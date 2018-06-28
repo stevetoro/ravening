@@ -1,19 +1,7 @@
 import React from 'react';
 import './Business.css';
 
-const business = {
-  imageSrc: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/burgerbear-077-1515519914.jpg',
-  name: 'Stokey Bears',
-  address: '129 Stoke Newington High St',
-  city: 'London',
-  state: 'UK',
-  zipCode: 'N16 0PH',
-  category: 'Burgers',
-  rating: 4.5,
-  reviewCount: 90
-};
-
-const Business = () => (
+const Business = ({ business }) => (
   <div className="Business">
     <div className="image-container">
       <img src={ business.imageSrc } alt=''/>
