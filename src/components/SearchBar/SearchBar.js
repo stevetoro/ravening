@@ -18,8 +18,12 @@ export default class SearchBar extends Component {
     return sortByOption == this.state.sortBy ? 'active' : '';
   }
 
-  handleSortByChange = sortByOption => {
+  handleSortByChange = sortByOption => () => {
     this.setState({ sortBy: sortByOption });
+  }
+
+  handleInputChange = name => event => {
+    this.setState({ [name]: event.target.value });
   }
 
   renderSortByOptions = () => {
@@ -29,7 +33,7 @@ export default class SearchBar extends Component {
         <li 
           key={ sortByOptionValue } 
           className={ this.getSortByClass(sortByOptionValue) }
-          onClick={ () => this.handleSortByChange(sortByOptionValue) }>
+          onClick={ this.handleSortByChange(sortByOptionValue) }>
             { sortByOption }
         </li>
       );
@@ -44,8 +48,8 @@ export default class SearchBar extends Component {
         </ul>
       </div>
       <div className="SearchBar-fields">
-        <input placeholder="Search Businesses" />
-        <input placeholder="Where?" />
+        <input placeholder="Search Businesses" onChange={ this.handleInputChange('term') }/>
+        <input placeholder="Where?" onChange={ this.handleInputChange('location') } />
       </div>
       <div className="SearchBar-submit">
         <a>Let's Go</a>
