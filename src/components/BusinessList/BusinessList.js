@@ -4,7 +4,7 @@ import './BusinessList.css';
 
 const BusinessList = ({ businesses }) => (
   <div className="BusinessList">
-    { businesses.map( business => <Business business={ business } />) }
+    { businesses.map( business => <Business key={ business.id } business={ business } />) }
   </div>
 );
 
