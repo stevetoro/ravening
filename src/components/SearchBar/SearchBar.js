@@ -26,6 +26,12 @@ export default class SearchBar extends Component {
     this.setState({ [name]: event.target.value });
   }
 
+  handleSearch = event => {
+    const { term, location, sortBy } = this.state;
+    this.props.searchYelp(term, location, sortBy);
+    event.preventDefault();
+  }
+
   renderSortByOptions = () => {
     return Object.keys(sortByOptions).map(sortByOption => {
       const sortByOptionValue = sortByOptions[sortByOption];
@@ -52,7 +58,7 @@ export default class SearchBar extends Component {
         <input placeholder="Where?" onChange={ this.handleInputChange('location') } />
       </div>
       <div className="SearchBar-submit">
-        <a>Let's Go</a>
+        <a onClick={ this.handleSearch } >Let's Go</a>
       </div>
     </div>
   )

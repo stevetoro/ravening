@@ -25,10 +25,15 @@ const businesses = [
 ]
 
 export default class App extends Component {
+
+  searchYelp = (item, location, sortBy) => {
+    console.log(`Searching Yelp with ${item}, ${location}, ${sortBy}.`);
+  }
+
   render = () => (
     <div className="App">
       <h1>ravening</h1>
-      <SearchBar />
+      <SearchBar searchYelp={ this.searchYelp } />
       <BusinessList businesses={ businesses } />
     </div>
   )
