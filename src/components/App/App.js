@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import BusinessList from '../BusinessList/BusinessList';
 import Yelp from '../../utils/Yelp';
 import './App.css';
 
-export default class App extends Component {
-  state = {
-    businesses: []
-  }
+const App = () => {
+  const [businesses, setBusinesses] = useState([]);
 
-  searchYelp = async (term, location, sortBy) => {
+  const searchYelp = async (term, location, sortBy) => {
     const businesses = await Yelp.search(term, location, sortBy);
-    this.setState({ businesses });
+    setBusinesses(businesses);
   }
 
-  render = () => (
+  return (
     <div className="App">
       <h1>ravening</h1>
-      <SearchBar searchYelp={ this.searchYelp } />
-      <BusinessList businesses={ this.state.businesses } />
+      <SearchBar searchYelp={ searchYelp } />
+      <BusinessList businesses={ businesses } />
     </div>
   )
 };
+
+export default App;
