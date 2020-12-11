@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
+import SortByOptions from '../SortByOptions/SortByOptions';
 import './SearchBar.css';
-
-const sortByOptions = {
-  'Best Match': 'best_match',
-  'Highest Rated': 'rating',
-  'Most Reviewed': 'review_count',
-};
 
 const SearchBar = ({ searchYelp }) => {
   const [search, setSearch] = useState({
@@ -13,10 +8,6 @@ const SearchBar = ({ searchYelp }) => {
     location: '',
     sortBy: 'best_match',
   })
-
-  const getSortByClass = sortByOption => {
-    return sortByOption == search.sortBy ? 'active' : '';
-  }
 
   const handleSortByChange = sortByOption => () => {
     setSearch(prevSearch => ({
@@ -39,27 +30,9 @@ const SearchBar = ({ searchYelp }) => {
     event.preventDefault();
   }
 
-  const renderSortByOptions = () => {
-    return Object.keys(sortByOptions).map(sortByOption => {
-      const sortByOptionValue = sortByOptions[sortByOption];
-      return (
-        <li 
-          key={ sortByOptionValue } 
-          className={ getSortByClass(sortByOptionValue) }
-          onClick={ handleSortByChange(sortByOptionValue) }>
-            { sortByOption }
-        </li>
-      );
-    });
-  }
-
   return (
     <div className="SearchBar">
-      <div className="SearchBar-sort-options">
-        <ul>
-          { renderSortByOptions() }
-        </ul>
-      </div>
+      <SortByOptions active={ search.sortBy } onSortByChange={ handleSortByChange } />
       <div className="SearchBar-fields">
         <input placeholder="Search Businesses" name="term" onChange={ handleInputChange } />
         <input placeholder="Where? (required)" name="location" onChange={ handleInputChange } />
