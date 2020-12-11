@@ -62,7 +62,7 @@ const SearchBar = ({ searchYelp }) => {
       </div>
       <div className="SearchBar-fields">
         <input placeholder="Search Businesses" name="term" onChange={ handleInputChange } />
-        <input placeholder="Where?" name="location" onChange={ handleInputChange } />
+        <input placeholder="Where? (required)" name="location" onChange={ handleInputChange } />
       </div>
       <div className="SearchBar-submit">
         <a onClick={ handleSearch } >Let's Go</a>
